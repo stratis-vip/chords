@@ -5,12 +5,14 @@ const GetMidi = ({setNotes, setExternal}) => {
     // Function triggered when WEBMIDI.js is ready
     function onEnabled() {
       // Inputs
+      console.log(WebMidi.inputs)
       // WebMidi.inputs.forEach(input => console.log(input, input.manufacturer, input.name));
+      let myInput1
       if (WebMidi.inputs.length < 2) {
-  
+        myInput1 = WebMidi.inputs[0]
       } else {
         const myInput1 = WebMidi.inputs[1]
-        
+      }
         // Outputsß
         myInput1.addListener("noteon", e => {
           console.log('ON', e, e.note.identifier);
@@ -26,7 +28,7 @@ const GetMidi = ({setNotes, setExternal}) => {
   
         })
         setExternal(myInput1)
-      }
+  
       // WebMidi.outputs.forEach(output => console.log(output.manufacturer, output.name));
   
     }
