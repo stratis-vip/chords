@@ -1,0 +1,51 @@
+#piano-keyboard {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+}
+
+:root {
+    --natural-key-width: 20px;
+    --natural-key-height: 80px;
+    --sharp-key-width: 15px; /* new variable for black key styling */
+    --sharp-key-height: 45px; /* new variable for black key styling */
+  }
+  
+  .key-natural {
+    position: relative;
+    width: var(--natural-key-width);
+    height: var(--natural-key-height);
+    border: 1px solid black;
+    box-sizing: border-box;
+    background: #fffff0; /* ivory color */
+  }
+
+
+  .key-sharp {
+    position: relative;
+    width: var(--sharp-key-width);
+    height: var(--sharp-key-height);
+    background: #36454f; /* charcoal color */
+    box-sizing: border-box;
+    z-index: 1; /* increasing z-index value to put element in front, when it's stacked with other html elements */
+    transform: translateX(-50%); /* move element to the left by 50% of its width */
+  }
+
+  .key-sharp + .key-natural {
+    margin-left: calc(-1 * var(--sharp-key-width)); /* calculating a negative margin equal to black key width */ 
+  }
+
+
+
+.key-natural.active::after,
+.key-sharp.active::after {
+  content: ""; /* set content of pseudo-element to be empty */
+  position: absolute; /* absolute positioning */
+  bottom: 10px; /* set pseudo-element to be 10 pixels from the bottom of parent */
+  left: 50%; /* move pseudo-element to the right by 50% of parents width */
+  transform: translateX(-50%); /* move pseudo-element to the left by its width */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+}
